@@ -1,0 +1,106 @@
+#AWS CLOUDWATCH INTERVIEW QUESTIONS
+What is AWS CloudWatch?
+What is an AWS CloudWatch Alarm?
+What is the difference between CloudTrail and CloudWatch?
+What to configure AWS CloudWatch alarm?
+What is the difference between CloudTrail and CloudWatch?
+How to view all alarms in AWS CloudWatch Console?
+How to delete alarms in AWS CloudWatch Console?
+What is CloudWatch Metric Streams?
+How do I send Grafana from CloudWatch metrics?
+What is Amazon CloudWatch ServiceLens?
+What is Amazon CloudWatch Synthetics?
+What are Canaries in Amazon CloudWatch Synthetics?
+Q: What is AWS CloudWatch?
+Ans:
+CloudWatch gathers monitoring and operational data in the form of logs, metrics, and events and visualises it by using automated dashboards to provide you with a unified view of your AWS resources, applications, and services which it runs both in AWS and on-premises.
+
+Q: What is a CloudWatch Alarm?
+Ans:
+The new CloudWatch Alarms feature helps in monitoring CloudWatch metrics and receive notifications when they fall outside of the levels (high or low thresholds) you set. Each metric can have multiple Alarms, each with its own set of actions.
+
+The status of a CloudWatch Alarm is always one of three: OK, ALARM, or INSUFFICIENT DATA. The Monitor is in the OK state whenever the metric is within the acceptable range which you have defined. When it reaches a certain threshold, it enters the ALARM state. The monitor enters the INSUFFICIENT DATA state when the data required to make the decision is missing or incomplete.
+
+Q: What is the difference between CloudTrail and CloudWatch?
+Ans:
+CloudWatch monitors and reports on the health and performance of AWS services and resources. CloudTrail, on the other hand, is a log of all actions that have occurred within your AWS environment.
+
+Q: What is the difference between CloudTrail and CloudWatch?
+Ans:
+CloudWatch monitors and reports on the health and performance of AWS services and resources. CloudTrail, on the other hand, is a log of all actions that have occurred within your AWS environment.
+
+Q: How to delete alarms in AWS CloudWatch Console?
+Ans:
+Use the following command to delete the alarms in AWS CloudWatch Console:
+aws cloudwatch delete-alarms --region us-east-2 --alarm-names ...
+
+Q: What is CloudWatch Metric Streams?
+Ans:
+CloudWatch Metric Streams is a feature that allows you to stream CloudWatch metrics to a destination of your choice indefinitely with minimal setup and configuration. It is a fully managed solution that eliminates the need for you to write code or maintain infrastructure. Users can configure a metric stream to destinations such as Amazon Simple Storage Service with a few clicks (S3). To maintain your operational dashboards up to date, users could also send the metrics to a number of third-party service providers.
+
+Q: How do I send Grafana from CloudWatch metrics?
+Ans:
+Install Grafana : Follow the steps to Install Grafana.
+Go to AWS -> IAM -> Policies.
+Add below JSON in policy -> Create Policy
+
+
+{
+   "Version": "2022-10-23", -- current Date
+   "Statement": [
+       {
+           "Sid": "AllowReadingMetricsFromCloudWatch",
+           "Effect": "Allow",
+           "Action": [
+               "cloudwatch:ListMetrics",
+               "cloudwatch:GetMetricStatistics",
+               "cloudwatch:GetMetricData"
+           ],
+           "Resource": "*"
+       },
+       {
+           "Sid": "AllowReadingTagsInstancesRegionsFromEC2",
+           "Effect": "Allow",
+           "Action": [
+               "ec2:DescribeTags",
+               "ec2:DescribeInstances",
+               "ec2:DescribeRegions"
+           ],
+           "Resource": "*"
+       }
+   ]
+}
+
+
+IAM -> Roles -> Create Role -> Select AWS Service / EC2
+Attach Permission policies
+IAM -> Users and click Add User ->Attach existing policies -> copy Access Key ID, your Secret Key
+EC2 -> Instances-> Select Grafana Server and click on Actions -> Instance Settings -> Attach/Replace IAM Role -> Attach your Grafana IAM Role to the instance.
+Log in to your Grafana Server using Terminal as root user and provide Access Key ID, your Secret Key:
+
+# vim /usr/share/grafana/.credentials
+
+aws_access_key_id = 000000000000
+aws_secret_access_key = 0000000000
+region = us-west-2
+
+# chmod 0644 .credentials
+Grafana -> Navigate to Data Sources -> Select CloudWatch Type
+Create Dashboard -> Select Graph -> Select Panel Title -> edit and provide namespace.
+
+
+Q: What is Amazon CloudWatch ServiceLens?
+Ans:
+Amazon CloudWatch ServiceLens is a new feature that lets you visualise and analyse the health, performance, and availability of your applications in one place. Amazon CloudWatch ServiceLens is accessible in all public AWS Regions that offer AWS-X-Ray.
+
+Q: What is Amazon CloudWatch Synthetics?
+Ans:
+To monitor your endpoints and APIs, you can use Amazon CloudWatch Synthetics to create canaries, which are configurable scripts that run on a schedule. Canaries take the same routes and perform the same actions as customers, allowing you to continuously validate your customer experience even if there is no customer traffic on your applications. You can detect problems before your customers do by using canaries.
+
+Synthetic Monitoring is an effective way of testing a website or web service by simulating visitor requests to test for availability, performance, and functionality.
+
+Q: What are Canaries in Amazon CloudWatch Synthetics?
+Ans:
+Scripts written in Node.js or Python are known as Canaries. In your account, users create Lambda functions that use Node.js or Python as a framework. Canaries support both the HTTP and HTTPS protocols.
+
+

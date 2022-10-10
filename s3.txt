@@ -1,0 +1,255 @@
+AWS-S3- interview questions and Answers
+
+ 1: What is Amazon S3?
+Ans:
+Amazon Simple Storage Service (Amazon S3) is an object storage service that provides industry-leading scalability, data availability, security, and performance.
+The service can be used as online backup and archiving of data and applications on Amazon Web Services (AWS).
+
+2: What is the use of AWS S3?
+Ans:
+Amazon S3 (Amazon Simple Storage Service) is an object storage service. Amazon S3 allows users to store and retrieve any amount of data from anywhere on the internet at any time.
+
+3: What is bucket in AWS S3?
+Ans:
+AWS Simple Storage Service (S3) bucket is an public object storage service. Similar to file folders, Amazon S3 buckets store objects that contain data and descriptive metadata.
+
+4: What type of storage is S3?
+Ans:
+Amazon S3 is an object storage service that allows you to store and retrieve any quantity of data from any location on the Internet.
+
+5: Which Maven Dependencies is required to work with AWS S3?
+Ans:
+Spring Boot/Spring Cloud Project
+You can use starter dependency called spring-cloud-starter-aws, which have spring-cloud-aws-context and spring-cloud-aws-autoconfigure dependencies.
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-aws</artifactId>
+</dependency>
+Refer Example to know how use AWS S3 dependency in Spring Boot application.
+6: What are the prerequisites for using AWS SDK S3 with a Spring Boot app?
+Ans:
+We'll need a few things to use the AWS SDK:
+
+AWS Account
+We'll need an account with Amazon Web Services. If you don't already have one, go ahead and create one.
+AWS Security Credentials
+These are the access keys that enable us to call AWS API actions programmatically. We can obtain these credentials in one of two ways: using AWS root account credentials from the Security Credentials page's access keys section, or using IAM user credentials from the IAM console.
+Refer How to generate access key and secret key to access Amazon S3
+AWS Region to store S3 object
+We must choose an AWS region (or regions) to store our Amazon S3 data. Remember that the cost of S3 storage varies by region. Visit the official documents for more information.
+AWS S3 Bucket
+We will need S3 Bucket to store the objects/files.
+Refer How To Create Bucket on Amazon S3
+
+
+7: How to connect to AWS S3 web service from Spring Boot application?
+Ans:
+To access Amazon S3 web service, we must first create a client connection. For this, we'll use the AmazonS3 interface:
+
+AWSCredentials awsCredentials = new BasicAWSCredentials(
+  "<AWS accesskey>", "<AWS secretkey>");
+And then configure the client:
+AmazonS3 s3client = AmazonS3ClientBuilder
+  .standard()
+  .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+  //provide the region that you have chose while selecting AWS Region
+  .withRegion(Regions.US_EAST_2)
+  .build();
+Refer Example to connect to AWS S3 web service from Spring Boot application.
+8: How to get the list of files under specific Bucket in AWS S3 in Spring Boot application?
+Ans:
+Use listObjects method to get all the objects/files under specified bucket.
+
+ListObjectsRequest listObjectsRequest =
+                new ListObjectsRequest()
+                        .withBucketName(bucketName);
+List<String> keys = new ArrayList<>();
+ObjectListing objects = amazonS3Client.listObjects(listObjectsRequest);
+Refer Example to get the list of files under specific Bucket in AWS S3 in Spring Boot application.
+9: How to download the file from Bucket in AWS S3 in Spring Boot application?
+Ans:
+As shown below getObject method retrieves the objects from AWS S3 Client for the given bucket and filename(keyName).
+
+ S3Object s3object = amazonS3Client.getObject(new GetObjectRequest(bucketName, keyName));
+
+ InputStream is = s3object.getObjectContent();
+ ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+ int len;
+ byte[] buffer = new byte[4096];
+  while ((len = is.read(buffer, 0, buffer.length)) != -1) {
+      outputStream.write(buffer, 0, len);
+  }
+
+ return outputStream;
+Refer Example to download the file from Bucket in AWS S3 in Spring Boot application.
+10: What are the constraints that must be taken into consideration when creating an S3 bucket?
+Ans:
+The following constraints apply to meet with DNS requirements:
+
+Underscores should not be used in bucket names.
+Bucket names should be between 3 and 63 characters long, with no dashes at the end.
+There can't be any periods in the name of a bucket.
+There can't be any dashes next to periods in bucket names (e.g., "abc-.testbucket.com" and "abc.-testbucket" are invalid)
+Uppercase characters are not permitted in bucket names.
+Powered By
+VDO.AI
+PlayUnmute
+Fullscreen
+11: How to create Bucket in AWS S3 in Spring Boot application?
+Ans:
+Since Amazon S3 bucket names are globally unique, you won't be able to create another bucket with the same name once it's been taken by another user.
+
+String bucketName = "techgeeknext-bucket1";
+
+//check if same bucket is already exist
+if(s3client.doesBucketExist(bucketName)) {
+    LOG.info("Bucket name is not available."
+      + " Try again with a different Bucket name.");
+    return;
+}
+
+s3client.createBucket(bucketName);
+12: How to create sub directory (object) in Amazon Web Service (AWS) S3?
+Ans:
+S3 does not have any "subdirectories". There are buckets, and keys inside buckets.
+
+Prefix searches can be used to represent traditional folders structure. For eg, in a bucket, you might keep the following keys like folder and subfolders way:
+
+zone/US
+zone/UK
+Now, you can put the file as given below in AWS S3 Bucket:
+
+s3client.putObject("techgeeknextbucket", "zone/US", file1);
+s3client.putObject("techgeeknextbucket", "zone/UK", file2);
+To get the list of all keys starting with zone/:
+
+ObjectListing listing = s3client.listObjects("techgeeknextbucket", "zone/");
+13: How to see all created buckets in AWS S3 in Spring Boot application?
+Ans:
+listBuckets() method will return a list of all the Buckets available in our S3 environment.
+
+List<Bucket> buckets = s3client.listBuckets();
+for(Bucket bucket : buckets) {
+    System.out.println(bucket.getName());
+}
+
+--------------------------
+Output:
+techgeeknext-bucket1
+techgeeknext-bucket2
+
+
+14: How to delete the bucket from AWS S3 in Spring Boot application?
+Ans:
+Before we delete our bucket, we must make sure it is empty.
+If this is not the case, an exception will be thrown.
+Also, only the owner of a bucket can delete it despite of its permissions (Access Control Policies).
+
+try {
+    s3client.deleteBucket("techgeeknext-bucket1");
+} catch (AmazonServiceException e) {
+    System.err.println("e.getErrorMessage());
+    return;
+}
+Refer Example to delete the bucket from AWS S3 in Spring Boot application.
+15: How to upload/store file in AWS S3 Bucket in Spring Boot application?
+Ans:
+putObject method of Amazon S3 Client is used to store the object/file into AWS S3 Bucket.
+
+ObjectMetadata metadata = new ObjectMetadata();
+metadata.setContentLength(file.getSize());
+amazonS3Client.putObject(bucketName, keyName,
+         file.getInputStream(), metadata);
+Refer Example to upload/store file in AWS S3 Bucket in Spring Boot application.
+16: Is S3 a DFS?
+Ans:
+S3 is not a distributed file system. It is a binary object store that stores data in key-value pairs. Each bucket is a new "database", with keys being your "folder path" and values being the binary objects (files). It's presented like a file system and people tend to use it like one.
+
+
+
+17: Is S3 a file system?
+Ans:
+Mounting an Amazon S3 bucket as a file system implies that you can use all your existing tools and applications to communicate with the Amazon S3 bucket to perform read/write operations on files and folders.
+
+18: How to solve com.amazonaws.util.EC2MetadataUtils: Unable to retrieve the requested metadata (/latest/meta-data/instance-id). Failed to connect to service endpoint Exception?
+Ans:
+Add this logging.level.com.amazonaws.util.EC2MetadataUtils entry in application.yml to get rid of below exception.
+
+fails to connect to service endpoint locally
+WARN 22462 --- [  restartedMain] com.amazonaws.util.EC2MetadataUtils: Unable to retrieve the requested metadata (/latest/meta-data/instance-id). Failed to connect to service endpoint:
+
+com.amazonaws.SdkClientException: Failed to connect to service endpoint:
+    at com.amazonaws.internal.EC2ResourceFetcher.doReadResource(EC2ResourceFetcher.java:100) ~[aws-java-sdk-core-1.11.699.jar:na]
+    at com.amazonaws.internal.EC2ResourceFetcher.doReadResource(EC2ResourceFetcher.java:70) ~[aws-java-sdk-core-1.11.699.jar:na]
+    at com.amazonaws.internal.InstanceMetadataServiceResourceFetcher.readResource(InstanceMetadataServiceResourceFetcher.java:75) ~[aws-java-sdk-core-1.11.699.jar:na]
+    at com.amazonaws.internal.EC2ResourceFetcher.readResource(EC2ResourceFetcher.java:62) ~[aws-java-sdk-core-1.11.699.jar:na]
+    at com.amazonaws.util.EC2MetadataUtils.getItems(EC2MetadataUtils.java:400) ~[aws-java-sdk-core-1.11.699.jar:na]
+    at com.amazonaws.util.EC2MetadataUtils.getData(EC2MetadataUtils.java:369) ~[aws-java-sdk-core-1.11.699.jar:na]
+    at org.springframework.cloud.aws.context.support.env.AwsCloudEnvironmentCheckUtils.isRunningOnCloudEnvironment(AwsCloudEnvironmentCheckUtils.java:38)
+Note: Point correct AWS region under region.static in the properties file else you will get the exception related to region as given below.
+Caused by: java.lang.IllegalArgumentException: The region 'us-east-1' is not a valid region!
+at org.springframework.cloud.aws.core.region.StaticRegionProvider.<init>(StaticRegionProvider.java:47)
+Refer Complete Example of AWS S3.
+19: What are the Scripting Options for Mounting a File System to Amazon S3?
+Ans:
+There are a few various ways to configure Amazon S3 as a local drive on Linux-based systems, that also allow to setups where you have Amazon S3 mounted EC2.
+
+1) S3FS-FUSE: This is a free, open-source FUSE plugin and a simple tool that supports major Linux & MacOS distributions. S3FS is also responsible for caching files locally to boost performance. This plugin will automatically show the Amazon S3 bucket as a drive on your machine.
+2) ObjectiveFS: ObjectiveFS is a commercial FUSE plugin that supports the Amazon S3 and Google Cloud Storage backends. It claims to provide a complete POSIX-compliant file system interface, that ensures that appends do not have to rewrite entire files. It also offers efficiency comparable to that of a local drive.
+3) RioFS: RioFS is a lightweight utility written in the C language. It is comparable to S3FS but has some few drawbacks, RioFS does not allow appending to file, does not completely support POSIX-compliant file system interfaces, and cannot rename files.
+20: How to setup S3FS on MacOS System?
+Ans:
+Use below steps to setup S3FS on MacOS System:
+
+1) Setup S3FS-FUSE on a Mac via HomeBrew.
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+2) Use brew install s3fs command to install s3fs:
+brew install s3fs
+
+
+21: How to install S3FS on Ubuntu?
+Ans:
+On Ubuntu 16.04, S3FS can be installed by using the apt-get command.
+
+sudo apt-get install s3fs
+22: How to Mount an Amazon S3 Bucket as a Drive with S3FS?
+Ans:
+1) Installation : Install S3FS on your computer. S3FS only supports Linux and MacOS based systems.
+2) Configurations: Once S3FS is installed, configure the credentials as given below.
+echo ACCESS_KEY:SECRET_KEY > ~/.passwd-s3fs
+cat ~/ .passwd-s3fs ACCESS_KEY:SECRET_KEY
+3) Provide the right access permission for the passwd-s3fs file to run S3FS successfully using below command.
+chmod 600 .passwd-s3fs
+4) Now mount the Amazon S3 bucket. Create a folder the Amazon S3 bucket will mount using below command.
+mkdir ~/s3-drive
+s3fs <bucketname> ~/s3-drive
+5) Use mount command to verify if the bucket successfully mounted.
+mount
+6) Now, you can interact with the Amazon S3 bucket same manner as any local folder, also "test folder" Folder created on MacOS appears instantly on Amazon S3.
+
+23: What is the default S3 bucket policy?
+Ans:
+Both Amazon S3 buckets and objects are private by default. Only the resource owner who created the AWS account can access that bucket. However, the owner of the resource can choose to grant access permissions to other resources and users.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

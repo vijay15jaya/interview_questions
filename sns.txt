@@ -1,0 +1,69 @@
+AWS-SNS Interview-Questions and Answer.
+
+  1. What is AWS Simple Notification Service?
+ans; AWS Simple Notification Service is a notification service that allows you to send messages to subscribers in order to keep them updated on changes to your AWS resources. You can use SNS to send messages to email addresses, phones, and even other AWS services.
+
+2. Can you explain the architecture of SNS?
+ans; SNS is a pub/sub messaging system that allows you to send messages to a large number of subscribers. It is designed to be highly scalable and fault tolerant. SNS is made up of a number of different components, including topics, subscribers, and message filters. Topics are the channels that messages are published to. Subscribers are the endpoints that receive the messages. Message filters allow you to specify which messages a subscriber should receive.
+
+3. What are some common use cases for SNS?
+ans; SNS can be used for a variety of things, but some of the most common use cases include sending notifications or alerts to users, sending updates to subscribers, or triggering Lambda functions.
+
+4. How do you create a topic in SNS?
+ans; You can create a topic in SNS using the AWS Management Console, the AWS Command Line Interface, or the AWS SDKs.
+
+5. How do you subscribe to an SNS topic?
+ans; You can subscribe to an SNS topic by using the AWS Management Console, the AWS SDK, or the AWS Command Line Interface.
+
+6. How can you subscribe to an SNS topic without using email or SMS as a medium?
+ans; You can use the AWS Management Console to subscribe to an SNS topic without using email or SMS as a medium.
+
+7. How do you send a message to an SNS topic?
+ans; You can use the AWS Management Console, the AWS SDK, or the AWS Command Line Interface (CLI) to send a message to an SNS topic.
+
+8. What does it mean when we say that SNS notifications are decoupled from the publish-subscribe mechanism?
+ans; This means that the SNS service can manage the delivery of notifications to subscribers without the publisher needing to be aware of or manage the subscribers. This allows for a more flexible and scalable notification system.
+
+9. What is the maximum size of an SNS notification payload?
+ans; The maximum size of an SNS notification payload is 256 KB.
+
+10. Is there any limit on the number of messages sent per second by SNS? If yes, then what are they?
+ans; Yes, there are limits on the number of messages sent per second by SNS. The limit depends on the region in which you are sending the messages, but is generally around 10,000 messages per second.
+
+11. Do all subscribers receive the same message at exactly the same time? Or is there a delay between messages being received by different subscribers?
+ans; There is a delay between messages being received by different subscribers. AWS Simple Notification Service uses a best-effort delivery system, so subscribers may receive messages at different times.
+
+12. How much does it cost to send 1 million messages through SNS?
+ans; The cost to send 1 million messages through SNS is $0.50.
+
+13. What is the difference between direct and fanout messaging models? Which one is preferred in which situations?
+ans; The direct messaging model is best suited for one-to-one communication, while the fanout messaging model is better for one-to-many communication. In the direct messaging model, each message is sent to a specific queue, and each queue can only be subscribed to by one consumer. In the fanout messaging model, each message is broadcast to all of the queues that are subscribed to the topic, and each queue can have multiple consumers.
+
+14. Why isn’t SNS used more extensively than other pub/sub mechanisms like Kafka or RabbitMQ?
+ans; There are a few reasons for this. Firstly, SNS is a managed service, so it is much easier to set up and maintain than something like Kafka. Secondly, SNS offers a lot of features and integrations that other pub/sub mechanisms do not, making it a more attractive option for many use cases. Finally, SNS is less expensive than other pub/sub solutions, making it a more appealing option for budget-conscious organizations.
+
+15. Does SNS support content filtering? If yes, how?
+ans; Yes, SNS supports content filtering. With SNS, you can set up topic policies that determine which subscribers are allowed to receive which messages. This way, you can ensure that only the subscribers who are interested in a particular message will receive it.
+
+16. Can you give me some examples of real-world applications that use SNS?
+ans; SNS is used in a variety of applications, including:
+
+– Mobile push notifications
+– Email notifications
+– Alerts and alarms
+– Social media notifications
+– IoT notifications
+
+17. What is the best way to configure SNS for high availability?
+ans; The best way to configure SNS for high availability is to create a cross-account subscription. This will allow you to send messages to an SNS topic in one AWS account and have them delivered to an SQS queue or Lambda function in another AWS account. This way, if one account goes down, the other can still receive the messages.
+
+18. Are SNS topics durable? If yes, why?
+ans; Yes, SNS topics are durable. The reason for this is that SNS topics can be used to deliver messages to multiple subscribers, and if a message is not delivered to one subscriber, it can be delivered to another. This makes SNS topics ideal for mission-critical notifications.
+
+19. Is it possible to disable SNS notifications once they have been enabled? If yes, then how?
+ans; Yes, it is possible to disable SNS notifications once they have been enabled. To do so, you would need to use the Amazon SNS console to set the topic’s display name to Disabled.
+
+20. Are messages delivered in the order that they were published? If not, then how do you ensure that messages are delivered in the correct sequence?
+ans; No, messages are not delivered in the order that they were published. In order to ensure that messages are delivered in the correct sequence, you will need to use the MessageDeduplicationId and MessageGroupId parameters when configuring your message delivery.
+
+

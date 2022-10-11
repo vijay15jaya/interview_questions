@@ -1,0 +1,103 @@
+AWS-LAMBDA-interview questions and answers.
+*******************************************
+
+ 1. What exactly automates deployment is?
+It is quite similar to programming in other languages. However, it cut down a lot of challenges associated. The best thing is the deployment of a pipeline that can easily be created as one become more proficient. Automate Deployment cuts down human interference and help the organizations ensure outcomes that are quality-based and are best in every aspect.
+
+2. What are the features in AWS lambda that automate the deployment?
+There are environmental variables that are supported by AWS lambda. They can be used for data and several other credentials when it comes to modifying the deployment package. As it’s a serverless approach, it also supports aliases. There are certain types in fact that you can easily consider such as stage production and dev. Thus, functions can easily be considered for testing and without actually interrupting the production code. The end-point doesn’t change easily and thus one can keep up the pace with the task.
+
+Explore AWS Big Data Services List
+3. What are the various ways to access EC2?
+This can be done with Command Line Interface and Web-Based Interface. Also, there are tools for Powershell in Windows through which it can simply be done. 
+
+4. Tell us about the frameworks which are available for serverless?
+There are several frameworks and serverless is extremely powerful. Its great support to Lambda and open whisk, as well as azure functions, makes it simply the best in every aspect. When it comes to extending the cloud formation, the Serverless Application Model can easily be considered. Scripting the changes to API becomes extremely simple with this approach and the best thing is the task is very quick and reliable. 
+
+5. What are the advantages of using the Serverless approach?
+The very first thing about this approach is simple operations which mean quick time to market and better sales. Users only need to pay when the code is running and thus a lot o cost can simply be saved which enhances profits. Also, managing the larger application components is not a big deal. In addition to this, there is no need to have the additional infrastructure. The biggest thing is users need not worry about the servers on which the code runs.
+
+6. Is it possible to debug and troubleshoot the micro or small services?
+Yes, it’s possible. It can be performed even when the function is running and appropriate tasks are being performed.hat 
+
+7. Is there any disadvantage of using this approach too? What do you think?
+Well, everything has its own pros and cons depending on the work we perform through it. When it comes to the serverless approach, the fact is applicable here too. In a few cases, there is a strict upper limit on vendor control in a serverless approach and this clearly means more downtime and thus losses. The loss of functionality and system limits are the other issues. Also, there is no dedicated hardware available for the serverless approach. Thus performance and security become challenges at several stages. Sometimes customer errors can also create problems. The new deployment, as well as monitoring tools,  become the only option when it comes to switching to Google Cloud functions. 
+
+8. What makes Lambda a time-saving approach?
+There are certain reasons for this. The one is it’s possible to simply store everything in the local server memory. Also, data can be stored directly into the database without affecting the performance. In addition to this, testing is not much complicated. Integration testing can simply be made powerful through multiple vendors.
+
+9. What is the time limit for execution in Lambda when you perform DDOS?
+The time limit is 5 minutes.
+
+10. What do you know about Zero downtime deployment?
+Deployments are generally considered in the form of functions. AWS Lambda divides it into units in case they are complex. The fact here is app remains in offline mode during such a time period. However, the results are always good. 
+
+11. There are some of the very complex querying capabilities that need to be handled without having a warehouse? Which database do you consider during such a case?
+The Amazon RDS is a good option as others such as ElasticCache suffer from some issues.RDS makes it easy to set up and manage every task reliably. Also, it is compatible with all modern tools.
+
+12. Among On-demand and Reserved Instances, which one is better to impose a limit on expenditure when it comes to optimizing the speed on Lambda?
+Reserved Instances are a better option. 
+
+13. What is EC2 service?
+In Lambda, there is always a need to have scalable computing capacity while dealing with data in the cloud. EC2 is meant for the same purpose as a web service. Networking, as well as security,  can easily be managed. Using minimal friction, configuring capacity can also be creased with EC2.
+
+14. What do you know about AMI?
+It stands for Amazon Machine Image and many times it is used in processed that is based on Lambda or even in conjunction with the same. Basically, it’s a template that contains an application server, OS, or other applications. It is possible to create its copy in the cloud. It has several instances and running multiple instances is also possible. AMI can also run a virtual server in a cloud.
+
+15. What do you know about Auto-Scaling?
+It is basically a feature in the Amazon Web Services that simply enables you to automatically configure and spin the novel instances. The good thing is there is no need for you to interfere at any stage. However, users can monitor everything through metrics and thresholds. To enable this task, you simply need to cross a threshold and you can see without any interference, the instances have scaled horizontally.
+
+16. Name the type of Storage provided by Amazon?
+For Instance, there are several storage options provided by Amazon and the best thing is every option is best in terms of durability as well as performance. In case you want to use them in combination, there is not a problem. Independent access is also available. The first storage is EBS which is actually block-level storage. It comes with an encryption feature and is a good option to consider when independent storage is required.
+
+The next type is the EC2 Instance store which is directly connected to the host PC as a storage disk. For temporary needs, it is a good option to consider. The data on this storage remains valid only when the instance is valid. If the same is deleted, data will also be gone. Another storage type is “Adding Storage”. When the root storage device is created, an instance is launched. It generally contains information related to boot Instance.
+
+The Amazon S3 is another option available for storage which is known to be an inexpensive option and can store any amount of data.
+
+17. Do you think there is a relation between Instance and AMI?
+Yes, they are associated with each other. Lambda offers a query API that is good in terms of query parameters. Requests such as HTTPs can simply be handled and managed.
+
+18. What are the best practices for security in Lambda?
+Ans: For security, there are some of the best options available in Lambda. One can use Identity Access and Management. This would be beneficial when it comes to controlling access to resources. Privilege is another option that basically opens up the permissions. Access can be restricted to hosts that are not trusted or unauthorized. There are rules in the security group that can be reviewed with time to keep up the pace simply. 
+
+19. What is elastic blockage storage in Lambda?
+It is basically a virtual storage area network where tasks can be started. It can tolerate faults easily and users need not worry about the loss of data even in case the disk damages in the RAID. Provisioning and allocating the storage can also be done in Elastic Block Storage. If required, it can also be connected to the API
+
+20. Give a simple method to improve performance in AWS Lambda?
+This can be done simply by using the Linux software RAID. Also, better security can simply be assured. 
+
+21. What do you know about building an AMI?
+The very first thing is to get an Instance from another trusted Amazon Machine Image. After this, you need to add components, as well as packages. Initially, there is no need to add data in it in case it is sensitive due to some security issues. Next is to add the access credentials post which you can sign up with a database. The total amount of data that you need to have in it can simply be enhanced up to any level depending on your need and exact requirement. 
+
+22. Is vertical scaling possible in Lambda?
+Yes, it’s possible and in fact, it is one of the best features in the AWS Lambda. Basically, it is considered when you need to spin a larger instance. In case you are already using the one, it can be paused. You need to detach the same as well from the server. It’s necessary to note the Id of the new device post which you can continue your process.
+
+23. What do you know about Configuration Management?
+In System Administration and Web operations, it is very common and in fact the oldest approach. The process is straightforward in the case of Lambda. When large-scale automation is to be achieved, this approach is adopted. A lot of tasks can be configured and managed reliably. A lot of challenges can be eliminated simply.
+
+24. What is SQS in Lambda? What role does it play?
+SQS is basically nothing but an approach used for information sharing and passing among the different hosts and connectors. Different components of Lambda can be made accessible or in other words, communication can be made possible in them. Even if the functional components are different, they can simply be connected. A lot of failures can be eliminated simply through this approach and components can understand each other effectively.
+
+25. What do you know about Lambda Expression?
+When comes to writing shorthand code, they are generally considered. Basically, they are adopted as anonymous methods for this purpose. The productivity of developers can simply be enhanced and reliable code can simply be assured without making a lot of effort. They are basically nameless functions.
+
+26. What are the Final Variables and Effectively final variables in Lambda?
+Final Variables are those which cannot be modified once assigned. When they are in an earlier stage where it is possible to make any form of change, they are called effectively variable. The value is yet to be assigned to them. The outcome is required without restriction in many cases and that is the reason to use effective variables. They can also play a role in testing. If final variables are to be equipped with several additional features, this can be done through effective Variables. Most local expressions in Lambda are final.
+
+27. What are the use cases for which Lambda was actually designed?
+The overall response to the clicks made on the website, Image uploading, Sensor’s reacting monitoring, as well as reading from the IoT devices are some of the use cases of AWS Lambda. However, access is not just limited to this only. There are several other tasks that can also be accomplished with Lambda. Back-end services can be provisioned automatically with Lambda.
+
+28. What is a Serverless App?
+It is nothing but an integration of Lambda functions that aims to accomplish some assigned tasks. It supports Node.Js
+
+29. What is the difference between the anonymous class and Lambda function?
+One important difference is the use of keywords. The keyword “this” in Lambda resolve to enclosing class while the same in the case of Anonymous Class resolves to the anonymous class itself.
+
+30. Is Lambda Expression a nameless suspension of Code?
+Yes, it is actually a nameless suspension of code.
+
+Are you interested to learn  AWS and building a career in Cloud Computing?  Then check out our AWS Certification Training Course at your near Cities
+
+AWS Training in Ahmedabad, AWS Training in Bangalore, AWS Training in Chennai, AWS Training in Delhi, AWS Training in Dallas, AWS Training in Hyderabad, AWS Training in Kolkata, AWS Training in London, AWS Training in Mumbai, AWS Training in NewYork, AWS Training in Noida, AWS Training in Pune, AWS Training in Toronto
+
+These courses are incorporated with Live instructor-led training, Industry Use cases, and hands-on live projects. This training program will make you an expert in AWS and help you to achieve your dream job
